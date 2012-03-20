@@ -63,9 +63,23 @@ class ControllerFbCategory extends Controller {
                     $this->data['display_price'] = FALSE;
             }
         	
-        	$results = $this->model_catalog_product->getProductsByCategoryId($category_id, $sort, $order, ($page - 1) * $this->config->get('config_catalog_limit'), $this->config->get('config_catalog_limit'));	
-			$product_total = $this->model_catalog_product->getTotalProductsByCategoryId($category_id);
-        	
+        	//$results = $this->model_catalog_product->getProductsByCategoryId($category_id, $sort, $order, ($page - 1) * $this->config->get('config_catalog_limit'), $this->config->get('config_catalog_limit'));	
+			//$product_total = $this->model_catalog_product->getTotalProductsByCategoryId($category_id);
+
+            $limit = $this->config->get('config_catalog_limit') ;
+            
+            $data = array(
+				'filter_category_id' => $category_id, 
+				'sort'               => $sort,
+				'order'              => $order,
+				'start'              => ($page - 1) * $limit,
+				'limit'              => $limit
+			);
+			
+			$product_total = $this->model_catalog_product->getTotalProducts($data); 
+			$results = $this->model_catalog_product->getProducts($data);
+		
+			
         	foreach($results as $result){
         		$product = new Product($this->registry);
             	$product->load($result);
@@ -75,6 +89,7 @@ class ControllerFbCategory extends Controller {
         	}
         	
         	
+			//echo "hi";exit;
         	//echo "<pre>";print_r($this->data['products']);exit;
         		$url = '';
 

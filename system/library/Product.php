@@ -168,12 +168,12 @@ class Product extends GenericObject {
      */
     public function price() {
         if ($this->_price == null) {
-            $discount = $this->model_catalog_product->getProductDiscount($this->_product_id);
+            $discount = $this->model_catalog_product->getProductDiscounts($this->_product_id);
             if ($discount) {
                 $this->_price = $this->currency->format($this->tax->calculate($discount, $this->_tax_class_id, $this->config->get('config_tax')));
             } else {
                 $this->_price = $this->currency->format($this->tax->calculate($this->_original_price, $this->_tax_class_id, $this->config->get('config_tax')));
-                $special = $this->model_catalog_product->getProductSpecial($this->_product_id);
+                $special = $this->model_catalog_product->getProductSpecials($this->_product_id);
                 if ($special) {
                     $this->_special_price = $this->currency->format($this->tax->calculate($special, $this->_tax_class_id, $this->config->get('config_tax')));
                 }

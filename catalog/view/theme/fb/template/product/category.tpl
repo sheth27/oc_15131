@@ -1,4 +1,4 @@
-<?php echo $fb_header ?>
+<?php echo $header ?>
 <div id="CategoryHeading" class="Block Moveable Panel">
 	<h2><?php echo $heading_title ?></h2>
 <?php if($category_id) {?>	
@@ -63,4 +63,4 @@
 	
 <?php }?>	
 </div>
-<?php echo $fb_footer ?>
+<?php echo $footer ?>

@@ -52,8 +52,8 @@ class ControllerFbSearch extends Controller {
         	$this->load->model('catalog/product');
             
             $product_total = $this->model_catalog_product->getTotalProductsByKeyword($this->request->get['keyword'], '', isset($this->request->get['description']) ? $this->request->get['description'] : '', isset($this->request->get['model']) ? $this->request->get['model'] : '');
-            
-            $product_tag_total = $this->model_catalog_product->getTotalProductsByTag($this->request->get['keyword'], '');
+
+            $product_tag_total = 0;//$this->model_catalog_product->getTotalProductsByTag($this->request->get['keyword'], '');
             
             $product_total = max($product_total, $product_tag_total);
         	
@@ -78,7 +78,7 @@ class ControllerFbSearch extends Controller {
                 
                 $results = $this->model_catalog_product->getProductsByKeyword($this->request->get['keyword'], '', isset($this->request->get['description']) ? $this->request->get['description'] : '', isset($this->request->get['model']) ? $this->request->get['model'] : '', $sort, $order, ($page - 1) * $this->config->get('config_catalog_limit'), $this->config->get('config_catalog_limit'));
 
-                $tag_results = $this->model_catalog_product->getProductsByTag($this->request->get['keyword'], '', $sort, $order, ($page - 1) * $this->config->get('config_catalog_limit'), $this->config->get('config_catalog_limit'));
+                $tag_results = array();//$this->model_catalog_product->getProductsByTag($this->request->get['keyword'], '', $sort, $order, ($page - 1) * $this->config->get('config_catalog_limit'), $this->config->get('config_catalog_limit'));
                 
                 foreach ($results as $key => $value) {
                     $tag_results[$value['product_id']] = $results[$key];
@@ -101,14 +101,14 @@ class ControllerFbSearch extends Controller {
                     
                     $special = FALSE;
                     
-                    $discount = $this->model_catalog_product->getProductDiscount($result['product_id']);
+                    $discount = $this->model_catalog_product->getProductDiscounts($result['product_id']);
                     
                     if ($discount) {
                         $price = $this->currency->format($this->tax->calculate($discount, $result['tax_class_id'], $this->config->get('config_tax')));
                     } else {
                         $price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
                         
-                        $special = $this->model_catalog_product->getProductSpecial($result['product_id']);
+                        $special = $this->model_catalog_product->getProductSpecials($result['product_id']);
                         
                         if ($special) {
                             $special = $this->currency->format($this->tax->calculate($special, $result['tax_class_id'], $this->config->get('config_tax')));

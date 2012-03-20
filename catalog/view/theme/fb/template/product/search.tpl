@@ -1,4 +1,4 @@
-<?php echo $fb_header ?>
+<?php echo $header ?>
 <div id="SearchPageHeader" class="Block Moveable Panel">
 	<h2><?php echo $heading_title ?></h2>
 </div>
@@ -58,4 +58,4 @@
 <?php } else {?>
 	<div><?php echo $text_no_result ?></div>
 <?php }?>
-<?php echo $fb_footer ?>
+<?php echo $footer ?>

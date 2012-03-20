@@ -1,27 +1,23 @@
-$.fn.tabs = function() {
-	var selector = this;
-	
-	this.each(function() {
-		var obj = $(this); 
+$.tabs = function(selector, start) {
+	$(selector).each(function(i, element) {
+		$($(element).attr('tab')).css('display', 'none');
 		
-		$(obj.attr('href')).hide();
-		
-		$(obj).click(function() {
-			$(selector).removeClass('selected');
-			
+		$(element).click(function() {
 			$(selector).each(function(i, element) {
-				$($(element).attr('href')).hide();
+				$(element).removeClass('selected');
+				
+				$($(element).attr('tab')).css('display', 'none');
 			});
 			
 			$(this).addClass('selected');
 			
-			$($(this).attr('href')).fadeIn();
-			
-			return false;
+			$($(this).attr('tab')).css('display', 'block');
 		});
 	});
-
-	$(this).show();
 	
-	$(this).first().click();
+	if (!start) {
+		start = $(selector + ':first').attr('tab');
+	}
+
+	$(selector + '[tab=\'' + start + '\']').trigger('click');
 };

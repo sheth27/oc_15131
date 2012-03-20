@@ -85,7 +85,7 @@ class ControllerFbProduct extends Controller {
 
 			$this->data['product_info'] = $product_info;
 			
-			$discount = $this->model_catalog_product->getProductDiscount($this->request->get['product_id']);
+			$discount = $this->model_catalog_product->getProductDiscounts($this->request->get['product_id']);
 			
 			if ($discount) {
 				$this->data['price'] = $this->currency->format($this->tax->calculate($discount, $product_info['tax_class_id'], $this->config->get('config_tax')));
@@ -94,7 +94,7 @@ class ControllerFbProduct extends Controller {
 			} else {
 				$this->data['price'] = $this->currency->format($this->tax->calculate($product_info['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
 			
-				$special = $this->model_catalog_product->getProductSpecial($this->request->get['product_id']);
+				$special = $this->model_catalog_product->getProductSpecials($this->request->get['product_id']);
 			
 				if ($special) {
 					$this->data['special'] = $this->currency->format($this->tax->calculate($special, $product_info['tax_class_id'], $this->config->get('config_tax')));
@@ -114,8 +114,10 @@ class ControllerFbProduct extends Controller {
 				);
 			}
 			
+			//echo "<pre>";print_r($product_info);exit;
+			
 			if ($product_info['quantity'] <= 0) {
-				$this->data['stock'] = $product_info['stock'];
+				$this->data['stock'] = $product_info['stock_status_id'];
 			} else {
 				if ($this->config->get('config_stock_display')) {
 					$this->data['stock'] = $product_info['quantity'];

@@ -23,6 +23,7 @@ $_['button_add_address']    = 'Add Address';
 $_['button_back']           = 'Back';
 $_['button_continue']       = 'Continue';
 $_['button_cart']           = 'Add to Cart';
+$_['button_add_to_cart']    = 'Add to Cart';
 $_['button_compare']        = 'Add to Compare';
 $_['button_wishlist']       = 'Add to Wish List';
 $_['button_checkout']       = 'Checkout';

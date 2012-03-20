@@ -16,16 +16,16 @@
 <?php } ?>
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/fb/stylesheet/component.css" />
 <script type="text/javascript" src="catalog/view/javascript/jquery/jquery-1.6.1.min.js"></script>
-<script type="text/javascript" src="catalog/view/javascript/jquery/jcarousel/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/jquery.jcarousel.min.js"></script>
 <script type="text/javascript" src="catalog/view/javascript/jquery/ui/jquery-ui-1.8.15.custom.min.js"></script>
 <link rel="stylesheet" type="text/css" href="catalog/view/javascript/jquery/ui/themes/custom-theme/jquery-ui-1.8.15.custom.css" />
 <script type="text/javascript" src="catalog/view/javascript/fb_common.js"></script>
-<script type="text/javascript" src="catalog/view/javascript/jquery/tab.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/tabs.js"></script>
 <link rel="stylesheet" type="text/css" href="catalog/view/theme/fb/stylesheet/stylesheet.css" />
 <script type="text/javascript"><!--
 	var KODEMALL = KODEMALL ||  { };
 
-	KODEMALL.marketplace_base_url = '<?php echo HTTPS_MALL_SERVER; ?>';
+	KODEMALL.marketplace_base_url = '';
 
 	KODEMALL.store_base_url = '<?php echo HTTPS_SERVER; ?>';
 </script>

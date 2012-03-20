@@ -1,4 +1,4 @@
-<?php echo $fb_header ?>
+<?php echo $header ?>
 
 <div id="ProductHeading" class="Block Moveable Panel">
 	<h2><?php echo $heading_title ?></h2>
@@ -208,12 +208,12 @@ $('#review .pagination a').live('click', function() {
     return false;
 });         
 
-$('#review').load(KODEMALL.store_base_url+'index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
+$('#review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
 
 function review() {
     $.ajax({
         type: 'POST',
-        url: KODEMALL.store_base_url+'index.php?route=product/product/write&product_id=<?php echo $product_id; ?>',
+        url: 'index.php?route=product/product/write&product_id=<?php echo $product_id; ?>',
         dataType: 'json',
         data: 'name=' + encodeURIComponent($('input[name=\'name1\']').val()) + '&text=' + encodeURIComponent($('textarea[name=\'text\']').val()) + '&rating=' + encodeURIComponent($('input[name=\'rating\']:checked').val() ? $('input[name=\'rating\']:checked').val() : '') + '&captcha=' + encodeURIComponent($('input[name=\'captcha\']').val()),
         beforeSend: function() {
@@ -245,4 +245,4 @@ function review() {
 <script type="text/javascript">
 $.tabs('.tabs a'); 
 </script>
-<?php echo $fb_footer ?>
+<?php echo $footer ?>

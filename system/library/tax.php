@@ -75,7 +75,7 @@ final class Tax {
 	
   	public function getTax($value, $tax_class_id) {
 		$amount = 0;
-			
+
 		$tax_rates = $this->getRates($value, $tax_class_id);
 		
 		foreach ($tax_rates as $tax_rate) {
